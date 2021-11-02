@@ -25,7 +25,7 @@ class: center, middle
 knitr::opts_chunk$set(echo = FALSE, dpi = 300)
 ```
 
-```{r script, eval=FALSE, include=FALSE}
+```{r script, include=FALSE}
 source("Scripts/Script.R", local = knitr::knit_global())
 ```
 
