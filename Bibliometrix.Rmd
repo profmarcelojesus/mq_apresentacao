@@ -16,7 +16,6 @@ affiliation:
       'Universidade Federal da Grande Dourados, Dourados, MS, Brasil'
 appendix: appendix.tex
 csl: abnt.csl
-
 keywords: |
   comunicação; extensão rural; agricultura familiar; conhecimento; informação.
 header-includes: |

@@ -7,6 +7,7 @@ date: "`r Sys.Date()`"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
+    css: ["default", "chocolate-fonts", custom.css]
     lib_dir: libs
     chakra: libs/remark-latest.min.js
     nature:
@@ -16,60 +17,87 @@ output:
 # knit: pagedown::chrome_print
 # xaringan::inf_mr()
 # xaringan::summon_remark()
+
 ---
-```{r echo=FALSE}
+class: center, middle
+
+```{r setup, include=F}
+knitr::opts_chunk$set(echo = FALSE, dpi = 300)
+```
+
+```{r script, eval=FALSE, include=FALSE}
+source("Scripts/Script.R", local = knitr::knit_global())
+```
+
+```{r logo, echo=FALSE}
 xaringanExtra::use_logo(
   image_url = "Imagens/logo_ppg.png",
   link_url = "https://portal.ufgd.edu.br/pos-graduacao/mestrado-agronegocios/index"
 )
 ```
----
-class: center, middle
 
 # Objetivo
 
-## O objetivo deste estudo é identificar os problemas de comunicação e as soluções apontadas pela literatura acadêmica sobre o tema.
+## Identificar os problemas de comunicação e as soluções apontadas pela literatura acadêmica sobre o tema.
+
 ---
-class: center, middle
+background-image: url(Imagens/big_data.png)
+background-position: 70% 50%
 
 # Metodologia
+## Análise Bibiométrica
+### Coleta de Dados
+  - [*Web of Science*](https://www.webofscience.com/wos/woscc/advanced-search)
+  - [*Scopus*](https://www.scopus.com/sources.uri)
+    
+### Período: 
+  - 2016 - 2021
+  
+### Tipos de documentos:
+  - Artigos
+  - Reviews
+---
+background-image: url(Imagens/bibliometrix.png)
+background-position: 80% 10%
 
-### Análise Bibiométrica
+# ETL (Extract Transform Load)
+## Seleção dos documentos
 
-<!-- --- -->
-<!-- class: inverse, center, middle -->
-
-<!-- # Get Started -->
+![](Imagens/fases.png)
 
 ---
-background-image: url(Imagens/big_data.jfif)
-background-position: 50% 50%
-<!-- class: center, bottom, inverse -->
-
-# Procedimentos de análise
-
-## Coleta de Dados
-
-### Bases: 
-#### [*Scopus*](https://www.scopus.com/sources.uri)
-#### [*Wob of Science*](https://www.webofscience.com/wos/woscc/advanced-search)
-### Tipos de documentos
-#### Artigos
-#### Reviews
-
----
-
-# Hello Ninja
-
-
-
-# Themes
-
-Don't want to learn CSS? Okay, you can use some user-contributed themes. A theme typically consists of two CSS files `foo.css` and `foo-fonts.css`, where `foo` is the theme name. Below are some existing themes:
-
-```{r, R.options=list(width = 70)}
-names(xaringan:::list_css())
+# Análise (Fase 1)
+### Informações principais
+```{r main_information1}
+knitr::kable(S$MainInformationDF[2:11,])
 ```
-
 ---
-
+# Análise (Fase 1)
+### Informações principais
+```{r main_information2}
+knitr::kable(S$MainInformationDF[14:25,])
+```
+---
+# Análise (Fase 1)
+### Autores mais produtivos
+```{r MostProdAuthors}
+knitr::kable(S$MostProdAuthors[1:10,1:2])
+```
+---
+# Análise (Fase 1)
+### Documentos mais citados
+```{r MostCitedPapers, out.height="50%"}
+knitr::kable(S$MostCitedPapers[1:10,1:3])
+```
+---
+# Análise (Fase 1)
+### Períodicos mais citados
+```{r MostRelSources, out.height="50%"}
+knitr::kable(S$MostRelSources[1:10,])
+```
+---
+# Análise (Fase 1)
+### Palavras-chaves mais relevantes
+```{r MostRelKeywords, out.height="50%"}
+knitr::kable(S$MostRelKeywords[1:10,])
+```

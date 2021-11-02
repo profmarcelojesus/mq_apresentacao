@@ -22,14 +22,14 @@ webshot::install_phantomjs()
 
 #Load----
 
-W <- convert2df("Dados/Wos.bib", dbsource = "wos", format = "bibtex")
-S <- convert2df("Dados/Sco.bib", dbsource = "scopus", format = "bibtex")
+Wos <- convert2df("Dados/Wos.bib", dbsource = "wos", format = "bibtex")
+Sco <- convert2df("Dados/Sco.bib", dbsource = "scopus", format = "bibtex")
 
 #MergeDB----
 
-nW <- nrow(W)
-nS <- nrow(S)
-artigos <- mergeDbSources(W, S, remove.duplicated = T)
+nW <- nrow(Wos)
+nS <- nrow(Sco)
+artigos <- mergeDbSources(Wos, Sco, remove.duplicated = T)
 a_min <- min(artigos$PY[!is.na(artigos$PY)])
 a_max <- max(artigos$PY[!is.na(artigos$PY)])
 n_WS <- nrow(artigos)
@@ -98,9 +98,6 @@ artigos[, c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- c(NA,
 
 # resumos[1:10]
 
-# artigos["MANZEKE GM, 2014, FIELD CROP RES", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
-#   c(F, NA, NA, NA, NA, NA)
-
 artigos["MCCAMPBELL M, 2018, NJAS-WAGEN J LIFE SCI", 
         c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
   c(T, "Farm-Extension-Research", "Production Systems", "Plant diseases", 
@@ -113,9 +110,6 @@ artigos["LALIKA MCS, 2017, ECOHYDROL HYDROBIOL",
 artigos["HERMANS TDG, 2021, LAND DEGRAD DEV", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
   c(T, "Farm-Technology", "Technology Adoption", "Conservation Agriculture", 
     "Social dynamics and information transfer, Contextual costs and benefits, Experience and risk aversion, and Practice adaptation", NA)
-
-# artigos["SHACKLETON S, 2015, WILEY INTERDISCIP REV CLIM CHANGE", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
-#   c(F, NA, NA, NA, NA, NA)
 
 artigos["WYCHE S, 2016, INFORM TECHNOL DEV", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
   c(T, "Farm-Information", "Access to Information", "Agricultural Market Information Services Adoption", 
@@ -139,8 +133,6 @@ artigos["STAUDACHER P, 2021, ENVIRON HEALTH", c("INCLUDE","CONTEXT","THEME","PRO
     "Affordable, accessible and repeated training and shop inspections", 
     "Structured interviews, observations")
 
-# resumos[11:20]
-
 artigos["DIRWAI TL, 2019, WATER POLICY", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
   c(F, NA, NA, NA, NA, NA)
 
@@ -157,11 +149,6 @@ artigos["MAVHUNDUSE F, 2019, AFR J LIBR ARCHIV INF SCI", c("INCLUDE","CONTEXT","
     "Use of mobile phones for information access with extension workers intermediation", 
     "Increasing the information handling skills of extension officers", "Interviews")
 
-# artigos["VALDIVIA C, 2014, AGRIC HUMAN VALUES", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
-#   c(T, "Farm-Extension-Research", "Translational research", 
-#     "The role of a translational research process to enhance farmers' voice", 
-#     "two-way communication participatory process", "Translational research")
-
 artigos["HUDSON HE, 2017, TELECOMMUN POLICY", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
   c(T,"Farm-Ongs","Radio and interactive icts", 
     "Strategies to provide information to smallholder farmers", 
@@ -176,31 +163,12 @@ artigos["WRIGHT HJ, 2016, J AGRIC FOOD INF1", c("INCLUDE","CONTEXT","THEME","PRO
   c(T, "Farm-Extension-Research", "Agricultural extension systems", "Use of icts", 
     "Tablets, Short message service (sms)", NA)
 
-# artigos["DESTA TT, 2012, TROP ANIM HEALTH PROD", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
-#   c(F, NA, NA, NA, NA, NA)
-
 artigos["KIBRET KS, 2020, EUROPEAN J REMOTE SENS", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
   c(F, NA, NA, NA, NA, NA)
-
-# resumos[21:30]
 
 artigos["HUNG GIA HOANG HGH, 2021, INF DEV", 
         c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
   c(F, NA, NA, NA, NA, NA)
-
-# artigos["KILELU CW, 2013, AGRIC SYST", 
-#         c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
-#   c(T, "Interinstitutional", "Agricultural innovation systems", 
-#     "platforms as intermediaries in innovation systems", 
-#     "mechanisms that strengthen feedback, learning and adaptive management in innovation processes", 
-#     "Case study")
-
-# artigos["LYLE G, 2015, J RURAL STUD", 
-#         c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
-#   c(T, "Farm-Farm", "Climate change adaptation", 
-#     "Climate change adaptation decision making process", 
-#     "Tailored plans of communication and dissemination of cc and cca information", 
-#     "Literature review")
 
 artigos["PRAMUWIDYATAMA MG, 2020, FRONT VET SCI", 
         c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
@@ -233,6 +201,34 @@ artigos["HAYES L, 2017, PREV VET MED",
     "relationships between smallholders and the organisations and individuals from which they seek information, assistance and support", "Engagement of government, industry organisations and all stakeholders involved with smallholders", NA)
 
 # ANTERIORES
+
+# artigos["MANZEKE GM, 2014, FIELD CROP RES", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
+#   c(F, NA, NA, NA, NA, NA)
+
+# artigos["SHACKLETON S, 2015, WILEY INTERDISCIP REV CLIM CHANGE", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
+#   c(F, NA, NA, NA, NA, NA)
+
+# artigos["VALDIVIA C, 2014, AGRIC HUMAN VALUES", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
+#   c(T, "Farm-Extension-Research", "Translational research", 
+#     "The role of a translational research process to enhance farmers' voice", 
+#     "two-way communication participatory process", "Translational research")
+
+# artigos["DESTA TT, 2012, TROP ANIM HEALTH PROD", c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
+#   c(F, NA, NA, NA, NA, NA)
+
+# artigos["KILELU CW, 2013, AGRIC SYST", 
+#         c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
+#   c(T, "Interinstitutional", "Agricultural innovation systems", 
+#     "platforms as intermediaries in innovation systems", 
+#     "mechanisms that strengthen feedback, learning and adaptive management in innovation processes", 
+#     "Case study")
+
+# artigos["LYLE G, 2015, J RURAL STUD", 
+#         c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
+#   c(T, "Farm-Farm", "Climate change adaptation", 
+#     "Climate change adaptation decision making process", 
+#     "Tailored plans of communication and dissemination of cc and cca information", 
+#     "Literature review")
 
 # artigos["KASSIE BT, 2013, ENVIRON MANAGE", 
 #         c("INCLUDE","CONTEXT","THEME","PROBLEM","SOLUTION","METHOD")] <- 
