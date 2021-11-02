@@ -1,0 +1,75 @@
+---
+title: "Em busca de soluções para problemas de comunicação entre pesquisadores, extensionistas e agricultores familiares"
+subtitle: "Disciplina: Métodos Quantitativos II"
+author: "Marcelo Chaves de Jesus"
+institute: "PPG Agronegócios UFGD"
+date: "`r Sys.Date()`"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# knit: pagedown::chrome_print
+# xaringan::inf_mr()
+# xaringan::summon_remark()
+---
+```{r echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "Imagens/logo_ppg.png",
+  link_url = "https://portal.ufgd.edu.br/pos-graduacao/mestrado-agronegocios/index"
+)
+```
+---
+class: center, middle
+
+# Objetivo
+
+## O objetivo deste estudo é identificar os problemas de comunicação e as soluções apontadas pela literatura acadêmica sobre o tema.
+---
+class: center, middle
+
+# Metodologia
+
+### Análise Bibiométrica
+
+<!-- --- -->
+<!-- class: inverse, center, middle -->
+
+<!-- # Get Started -->
+
+---
+background-image: url(Imagens/big_data.jfif)
+background-position: 50% 50%
+<!-- class: center, bottom, inverse -->
+
+# Procedimentos de análise
+
+## Coleta de Dados
+
+### Bases: 
+#### [*Scopus*](https://www.scopus.com/sources.uri)
+#### [*Wob of Science*](https://www.webofscience.com/wos/woscc/advanced-search)
+### Tipos de documentos
+#### Artigos
+#### Reviews
+
+---
+
+# Hello Ninja
+
+
+
+# Themes
+
+Don't want to learn CSS? Okay, you can use some user-contributed themes. A theme typically consists of two CSS files `foo.css` and `foo-fonts.css`, where `foo` is the theme name. Below are some existing themes:
+
+```{r, R.options=list(width = 70)}
+names(xaringan:::list_css())
+```
+
+---
+
