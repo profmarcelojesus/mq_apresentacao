@@ -156,6 +156,9 @@ CS$graph_terms+labs(title = "Mapa de Estrutura Conceitual")
 nuvem
 ```
 ---
+background-image: url(Imagens/exclam.png)
+background-position: 70% 50%
+
 # Análise (Fase 2)
 
 ### Contexto da Comunicação
