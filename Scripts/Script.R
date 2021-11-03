@@ -260,11 +260,53 @@ n_inc <- nrow(n_inc)
 results <- biblioAnalysis(artigos)
 S <- summary(object = results, k = 20, pause = F, verbose = F)
 
+plot.MostProdAuthors <- function(x, k, font.size, bar.width) {
+  xx=as.data.frame(x$Authors[1:k])
+  g=ggplot(data=xx, aes(x=.data$AU, y=.data$Freq)) +
+    geom_bar(stat="identity", fill="steelblue", width=bar.width)+
+    labs(title="Autores mais Produtivos", x = "Autores")+
+    labs(y = "N. de Documentos")+
+    theme_minimal() +
+    coord_flip() + 
+    theme(text = element_text(size = font.size))
+  plot(g)
+  graphs.MostProdAuthors=g
+}
+
+plot.CountryCollaboration <- function(x, k, font.size, bar.width) {
+  xx=x$CountryCollaboration[1:k,]
+  xx=xx[order(-(xx$SCP+xx$MCP)),]
+  xx1=cbind(xx[,1:2],rep("SCP",k))
+  names(xx1)=c("Country","Freq","Collaboration")
+  xx2=cbind(xx[,c(1,3)],rep("MCP",k))
+  names(xx2)=c("Country","Freq","Collaboration")
+  xx=rbind(xx2,xx1)
+  xx$Country=factor(xx$Country,levels=xx$Country[1:dim(xx2)[1]])
+  g=suppressWarnings(ggplot(data=xx, aes(x=.data$Country, y=.data$Freq,fill=.data$Collaboration)) +
+                       geom_bar(stat="identity")+
+                       scale_x_discrete(limits = rev(levels(xx$Country)))+
+                       scale_fill_discrete(name="Collaboration",
+                                           breaks=c("SCP","MCP"))+
+                       labs(title = "Países mais Produtivos", x = "Países", y = "N. de Documentos", 
+                            caption = "SCP: (Single Country Publications) Apenas Autores do País, MCP: (Multiple Country Publications) Múltiplos Países") +
+                       theme_minimal() + 
+                       theme(text = element_text(size = font.size)) +
+                       theme(plot.caption = element_text(size = 9, hjust = 0.5,
+                                                         color = "blue", face = "italic"))+
+                       coord_flip())
+  plot(g)
+}
+# Filiações
+
+# Authors <- S$MostProdAuthors[,1:2]
+# for(i in 1:nrow(Authors)) {
+#   Authors$Affiliation[i] <- stringr::str_extract(results$Affiliations)
+# }
+
 # Colaboração científica entre países
 M <- metaTagExtraction(artigos, Field = "AU_CO", sep = ";")
 NetMatrix <- biblioNetwork(M, analysis = "collaboration", network = "countries", sep = ";")
-colab_country <- networkPlot(NetMatrix, n = 30, Title = "Colaboração Científica entre Países", 
-                             type = "fruchterman", size=T, remove.multiple=F, labelsize=1, alpha = 1)
+colab_country <- networkPlot(NetMatrix, n = 30, type = "fruchterman", size=T, remove.multiple=F, labelsize=1, alpha = 1)
 # # Rede de co-citações
 # NetMatrix <- biblioNetwork(artigos, analysis = "co-citation", network = "references", sep = ";")
 # net_cocitation <- networkPlot(NetMatrix, n = 50, Title = "Redes de Co-citações", type = "fruchterman", 
@@ -332,10 +374,10 @@ corpus <- corpus[corpus$Freq > 4,]
 
 nuvem <- wordcloud2(data = corpus, size = 0.4, minRotation = 0.2, rotateRatio = 0.8)
 
-library("htmlwidgets")
-
-saveWidget(nuvem,"tmp.html",selfcontained = F)
-
-webshot("tmp.html","Imagens/wordcloud.png", delay=20, vwidth=800, vheight=480)
+# library("htmlwidgets")
+# 
+# saveWidget(nuvem,"tmp.html",selfcontained = F)
+# 
+# webshot("tmp.html","Imagens/wordcloud.png", delay=20, vwidth=800, vheight=480)
 
 
