@@ -291,22 +291,17 @@ plot.CountryCollaboration <- function(x, k, font.size, bar.width) {
                             caption = "SCP: (Single Country Publications) Apenas Autores do País, MCP: (Multiple Country Publications) Múltiplos Países") +
                        theme_minimal() + 
                        theme(text = element_text(size = font.size)) +
-                       theme(plot.caption = element_text(size = 9, hjust = 0.5,
+                       theme(plot.caption = element_text(size = 10, hjust = 0.5,
                                                          color = "blue", face = "italic"))+
                        coord_flip())
   plot(g)
 }
-# Filiações
-
-# Authors <- S$MostProdAuthors[,1:2]
-# for(i in 1:nrow(Authors)) {
-#   Authors$Affiliation[i] <- stringr::str_extract(results$Affiliations)
-# }
 
 # Colaboração científica entre países
 M <- metaTagExtraction(artigos, Field = "AU_CO", sep = ";")
 NetMatrix <- biblioNetwork(M, analysis = "collaboration", network = "countries", sep = ";")
 colab_country <- networkPlot(NetMatrix, n = 30, type = "fruchterman", size=T, remove.multiple=F, labelsize=1, alpha = 1)
+
 # # Rede de co-citações
 # NetMatrix <- biblioNetwork(artigos, analysis = "co-citation", network = "references", sep = ";")
 # net_cocitation <- networkPlot(NetMatrix, n = 50, Title = "Redes de Co-citações", type = "fruchterman", 
@@ -342,7 +337,7 @@ net_author_keywords <- networkPlot(NetMatrix, normalize="association", weighted=
 # B <- bradford(artigos)
 # B <- left_join(artigos, B$table)
 # B <- filter(B, Zone == "Zone 1")
-CS <- conceptualStructure(artigos,field="AB", method="MCA", minDegree=10, clust="auto", ngrams = 2,
+CS <- conceptualStructure(artigos,field="AB", method="MCA", minDegree=4, clust="auto", ngrams = 2,
                           k.max=2, stemming=T, labelsize=12, documents=10, graph = F)
 
 # Produtividade dos Principais Autores
@@ -351,7 +346,7 @@ aut$graph+labs(title = "Produtividade dos Autores no Período",
                x = "Autores", y = "Anos")+theme(text = element_text(size = 10)) 
 
 # Treemap
-threeFieldsPlot(artigos, fields = c("AU", "DE", "SO"), n = c(20, 20, 20))
+treemap <- threeFieldsPlot(artigos, fields = c("AU", "DE", "SO"), n = c(20, 20, 20))
 
 # Nuvem de palavras
 # Renata Muylaert 
@@ -372,12 +367,14 @@ corpus <- corpus[!corpus$tsplit %in% padroes_indesejados,]
 corpus <- corpus[corpus$Freq > 4,]
 # Criando a nuvem com wordcloud2
 
-nuvem <- wordcloud2(data = corpus, size = 0.4, minRotation = 0.2, rotateRatio = 0.8)
-
+nuvem <- wordcloud2(data = corpus, widgetsize =c("1000","740"), 
+                    size = 0.5, minRotation = 0.2, rotateRatio = 0.8)
 # library("htmlwidgets")
 # 
 # saveWidget(nuvem,"tmp.html",selfcontained = F)
 # 
 # webshot("tmp.html","Imagens/wordcloud.png", delay=20, vwidth=800, vheight=480)
 
-
+# dendrogram <- conceptualStructure(B,field="AB_TM", method="MCA", minDegree=10, 
+#                                   clust="auto", ngrams = 2, k.max=2, stemming=T, 
+#                                   labelsize=12, documents=10, graph = F)

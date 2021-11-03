@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = FALSE, dpi = 300)
 ```
 
 ```{r script, include=FALSE}
-source("Scripts/Script.R", local = knitr::knit_global())
+source("Scripts/Script.R", encoding="utf-8", local = knitr::knit_global())
 ```
 
 ```{r logo, echo=FALSE}
@@ -41,14 +41,14 @@ xaringanExtra::use_logo(
 
 # Objetivo
 
-### Identificar os problemas de comunicação entre agricultores familiares, extensionistas e pesquiasdores e as soluções apontadas pela literatura acadêmica sobre o tema. 
-
+### Identificar os problemas de comunicação entre agricultores familiares, extensionistas e pesquisadores e as soluções apontadas pela literatura acadêmica sobre o tema. 
+----
 ---
 background-image: url(Imagens/big_data.png)
 background-position: 80% 50%
 
 # Metodologia
-## Análise Bibiométrica
+## Análise Bibliométrica
 ### Coleta de Dados
   - [*Web of Science*](https://www.webofscience.com/wos/woscc/advanced-search)
   - [*Scopus*](https://www.scopus.com/sources.uri)
@@ -61,11 +61,11 @@ background-position: 80% 50%
   - Reviews
 ---
 background-image: url(Imagens/bibliometrix.png)
-background-position: 80% 10%
+background-position: 80% 5%
 
 # ETL (Extract Transform Load)
 ## Seleção dos documentos
-
+<center>
 ![](Imagens/fases.png)
 
 ---
@@ -95,13 +95,13 @@ graphs.MostProdAuthors <- plot.MostProdAuthors(results, k = 10, 18, 0.6)
 ---
 # Análise (Fase 1)
 ### Autores mais produtivos
+
 - Gao, Yang
   - College of Economics, Qufu Normal University, Shandong, China
-China
 - Dorward, Peter T.
   - University of Reading, Reading, United Kingdom
 - Gitau, George Karuoya
-  - University of Nairobi, Nairobi, KenyaShow
+  - University of Nairobi, Nairobi, Kenya
 - Klerkx, Laurens
   - Wageningen University & Research, Wageningen, Netherlands
 - Moyo, Martin Philani
@@ -112,7 +112,8 @@ China
   - International Institute of Tropical Agriculture (IITA), Kigali, Rwanda
 - VanLeeuwen, John A.
   - University of Prince Edward Island, Charlottetown, Canada
-  
+
+*Fonte: Scopus*
 ---
 # Análise (Fase 1)
 ### Documentos mais citados
@@ -121,7 +122,7 @@ knitr::kable(S$MostCitedPapers[1:10,1:3])
 ```
 ---
 # Análise (Fase 1)
-### Períodicos mais citados
+### Períodicos com maior número de publicações
 ```{r MostRelSources}
 knitr::kable(S$MostRelSources[1:10,])
 ```
@@ -132,9 +133,9 @@ knitr::kable(S$MostRelSources[1:10,])
 graphs.CountryCollaboration <- plot.CountryCollaboration(results, k = 10, 18, 0.6)
 ```
 ---
-# Análise (Fase 1)
-```{r colab_country, out.height=600, fig.align='center'}
-plot(colab_country$graph)+labs(title = "Colaboração Científica entre Países")
+```{r colab_country, fig.align='center', message=FALSE, warning=FALSE, out.height=740}
+plot(colab_country$graph)
+title("Colaboração Científica entre Países")
 ```
 ---
 # Análise (Fase 1)
@@ -143,8 +144,14 @@ plot(colab_country$graph)+labs(title = "Colaboração Científica entre Países"
 knitr::kable(S$MostRelKeywords[1:10,])
 ```
 ---
-# Análise (Fase 1)
-### Palavras-chaves mais relevantes
-```{r net_author_keywords}
-knitr::kable(S$MostRelKeywords[1:10,])
+```{r net_author_keywords, fig.align='center', out.height=740}
+plot(net_author_keywords$graph)
+```
+---
+```{r graph_terms, warning=FALSE, fig.align='center', out.height=600}
+CS$graph_terms+labs(title = "Mapa de Estrutura Conceitual")
+```
+---
+```{r wordcloud, warning=FALSE, fig.align='center', out.height=740}
+nuvem
 ```
