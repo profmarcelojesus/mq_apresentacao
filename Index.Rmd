@@ -155,3 +155,54 @@ CS$graph_terms+labs(title = "Mapa de Estrutura Conceitual")
 ```{r wordcloud, warning=FALSE, fig.align='center', out.height=740}
 nuvem
 ```
+---
+# Análise (Fase 2)
+
+### Contexto da Comunicação
+
+- Farm-Extension-Research
+- Farm-Farm
+- Farm-Government
+- Interinstitutional
+
+### Temas
+### Problemas
+### Soluções
+### Metodologia
+
+---
+background-image: url(Imagens/interview.png)
+background-position: 80% 50%
+
+# Análise (Fase 2)
+## Métodos de análise
+### Abordagens Qualitativas
+- Entrevistas
+- Observação
+- *Focus groups*
+- Estudos de caso
+---
+background-image: url(Imagens/data.png)
+background-position: 80% 50%
+# Análise (Fase 2)
+## Métodos de análise
+
+### Abordagens Quantitativas
+- Regressão logit
+- Modelo de Ricardo com *Double-Hurdle model*
+- Fixed effect panel model
+
+### Mixed models
+- Social Network Analysis (SNA)
+- Experimental design, Fractional factorial design
+---
+class: center
+
+background-image: url(Imagens/GitHub.png)
+background-position: 50% 70%
+
+# Obrigado!
+
+###[https://profmarcelojesus.github.io/mq_apresentacao](https://profmarcelojesus.github.io/mq_apresentacao)
+
+###[https://github.com/profmarcelojesus/mq_apresentacao](https://github.com/profmarcelojesus/mq_apresentacao)

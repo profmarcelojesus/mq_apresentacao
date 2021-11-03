@@ -378,3 +378,7 @@ nuvem <- wordcloud2(data = corpus, widgetsize =c("1000","740"),
 # dendrogram <- conceptualStructure(B,field="AB_TM", method="MCA", minDegree=10, 
 #                                   clust="auto", ngrams = 2, k.max=2, stemming=T, 
 #                                   labelsize=12, documents=10, graph = F)
+
+# Metodologias
+
+# met <- dplyr::filter(artigos, !is.na(METHOD))
